@@ -1,0 +1,17 @@
+{
+  "name": "deploy",
+  "version": "0.1.0",
+  "description": "Curso · DEPLOY (Funil, Criativos & Página) — você sai com a identidade, o funil desenhado pro seu estágio de consciência, a página de vendas no ar (Cloudflare Pages) e os criativos na sua voz.",
+  "author": {
+    "name": "Academia Lendária"
+  },
+  "bootstrap": "usando-o-deploy",
+  "keywords": [
+    "marketing",
+    "funil",
+    "pagina-de-vendas",
+    "criativos",
+    "identidade-visual",
+    "cloudflare-pages"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DEPLOY project config",
+  "description": "Config do projeto do aluno. Fica em .deploy/config.json na raiz do projeto onde o aluno roda o plugin (NÃO dentro do plugin). Lido por todas as skills e pelo comando /deploy.",
+  "type": "object",
+  "required": ["modo"],
+  "additionalProperties": false,
+  "properties": {
+    "modo": {
+      "type": "string",
+      "enum": ["essencial", "completo"],
+      "default": "essencial",
+      "description": "essencial = inline, direto ao ponto, barato. completo = subagentes, revisão mais funda, focus/QA completo, caro."
+    },
+    "marca": {
+      "type": ["string", "null"],
+      "default": null,
+      "description": "Nome da marca/negócio do aluno, para a voz da página e dos criativos."
+    },
+    "nicho": {
+      "type": ["string", "null"],
+      "default": null,
+      "description": "Nicho/mercado do aluno. Herdado do RECON quando existe."
+    },
+    "estagio_consciencia": {
+      "type": ["integer", "null"],
+      "default": null,
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Estágio de consciência do público (1-5, Schwartz), diagnosticado pelo /metodo-funil. Prescreve o funil."
+    },
+    "cloudflare_project": {
+      "type": ["string", "null"],
+      "default": null,
+      "description": "Nome do projeto no Cloudflare Pages (conectado ao repositório Git do aluno)."
+    },
+    "repo_git": {
+      "type": ["string", "null"],
+      "default": null,
+      "description": "Repositório Git da página, conectado ao Cloudflare Pages para auto-deploy no push."
+    },
+    "idioma": {
+      "type": "string",
+      "default": "pt-BR"
+    },
+    "versao_plugin": {
+      "type": "string",
+      "description": "Versão do plugin DEPLOY que criou este config."
+    }
+  }
+}

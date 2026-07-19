@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# SessionStart hook do plugin deploy
+set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+conteudo=$(cat "${PLUGIN_ROOT}/skills/usando-o-deploy/SKILL.md" 2>&1 || echo "Erro ao ler usando-o-deploy")
+
+escape_json() {
+  local s="$1"
+  s="${s//\\/\\\\}"; s="${s//\"/\\\"}"; s="${s//$'\n'/\\n}"; s="${s//$'\r'/\\r}"; s="${s//$'\t'/\\t}"
+  printf '%s' "$s"
+}
+esc=$(escape_json "$conteudo")
+ctx="<EXTREMELY_IMPORTANT>\nVocê tem o plugin deploy.\n\n**Abaixo está o conteúdo da skill 'usando-o-deploy'. Para as demais skills, use a ferramenta Skill:**\n\n${esc}\n</EXTREMELY_IMPORTANT>"
+
+if [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
+  printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SessionStart",\n    "additionalContext": "%s"\n  }\n}\n' "$ctx"
+else
+  printf '{\n  "additionalContext": "%s"\n}\n' "$ctx"
+fi
+exit 0

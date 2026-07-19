@@ -1,0 +1,9 @@
+# Config do projeto do aluno (nasce na máquina dele ao rodar o plugin)
+.deploy/
+
+# Pastas de projeto geradas pelas skills
+projetos/
+
+# Ruído de SO
+Thumbs.db
+.DS_Store
